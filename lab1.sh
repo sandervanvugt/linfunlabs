@@ -1,7 +1,7 @@
 #!/bin/bash
 echo I will now check your work, wait a few seconds please
 sleep 5
-if grep bob /etc/passwd 
+if grep bob /etc/passwd  &>/dev/null
 then
 	echo congratulations, you completed this lab successfully!
 else
@@ -10,13 +10,13 @@ else
 	read ANSWER
 	if [ $ANSWER = y ]
 	then
-		echo okay, this is what you shoul do
+		echo okay, this is what you should do
 		echo useradd bob
 		echo 'would you like me to clean up now so that you can try yourself (y/n)'?
 		read CLEANUP	
 		if [ $CLEANUP = y ]
 		then
-			userdel -rf bob
+			userdel -rf bob &>/dev/null
 			echo I finished cleaning up, you can now try again
 		else
 			echo not cleaning up anything
